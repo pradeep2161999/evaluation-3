@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Custom Events in JavaScript</title>
+  </head>
+
+  <body>
+    <h2 id="number">Hello</h2>
+
+    <script type="text/javascript">
+      const headerTage = document.getElementById("number");
+      console.log(headerTage);
+
+      headerTage.addEventListener("numberChanged", function (e) {
+        headerTage.textContent = e.detail.number;
+        headerTage.style.color = e.detail.textColor;
+      });
+
+      function changeNumber(n, c) {
+        const event = new CustomEvent("numberChanged", {
+          detail: {
+            number: n,
+            textColor: c,
+          },
+        });
+        headerTage.dispatchEvent(event);
+      }
+    </script>
+  </body>
+</html>
